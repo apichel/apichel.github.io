@@ -33,7 +33,7 @@ body {
 /* Typography */
 
 h1, h2 {
-	font-family: 'Love Ya Like A Sister', cursive;
+	font-family: Menlo, sans-serif;
 	color: #d17f38;
 	font-size: 40px;
 	font-weight: normal;

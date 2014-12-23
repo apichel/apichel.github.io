@@ -1,146 +1,180 @@
-@charset "UTF-8";
-/* CSS Doc */
+$height: 427px;
+$width: 320px;
 
-#body {
-  background-color: #ffffff;
-  margin-top: 0px;
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
+$light-blue: #288FBD;
+$dark-blue: #005D8C;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+
+body {
+  background-image: url(http://subtlepatterns.com/patterns/gplaypattern.png);
+  background-position: center center;
+  font-family: 'Open Sans', sans-serif;
 }
 
-#wrapper {
-  text-align: left;
-  margin: 0px auto;
-  padding: 0px;
-  border: 0px;
-  width: 1040px;
-  background-color: #ffffff
-  overflow: visible;
-  min-height: 600px;
+div.business-card {
+    height: $height;
+  width: $width;
+  margin-left: $width/-2;
+  margin-top: $height/-2;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  perspective: 1000;
+
+  &:hover .flipper, &.hover .flipper {
+    transform: rotateY(180deg) rotateZ(90deg);
+  }
 }
 
-#header {
-  margin: 0 0 0 0;
-  background: white;
-  padding-top: 30px;
-  padding-bottom: 15px;
+div.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+  transform-origin: center $width/2;
 }
 
-#nav {
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  color: #000000;
-  list-stle: none;
-  padding: 0px 0px 0px 20px;
-  font-size: 13px;
-  line-height: 20px;
+div.front, div.back {
+  backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  height: $height;
+  width: $width;
+
+    box-shadow: 0 0 50px rgba(0,0,0,0.75);
 }
 
-#nav-h {
-  font-family: Helvetica, Arial, sans-serif;
-  color: #000000;
-  font-size: 27px;
-  padding-bottom: 15px;
+div.front {
+  background-color: white;
+  z-index: 0;
+
+  &:before, &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-width: $width/2;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  &:before {
+    border-top-color: $light-blue;
+    border-left-color: $light-blue;
+    z-index: 2;
+  }
+
+  &:after {
+    border-top-color: $dark-blue;
+    border-right-color: $dark-blue;
+  }
+
+  div.name {
+    position: absolute;
+    bottom: ($height - $width - 90)/2;
+    left: ($width - 150px) / 2;
+
+    span {
+      display: block;
+      font-size: 40px;
+      line-height: 45px;
+    }
+
+    span.first {
+      color: $dark-blue;
+    }
+
+    span.last {
+      color: $light-blue;
+    }
+
+    span.title {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
 }
 
-h1 {
-  margin: 0px;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 50px;
-  font-weight: bold;
-  padding: 0px 0px 0px 20px;
-  color: #000000;
-}
+div.back {
+  background-color: $dark-blue;
+  color: white;
+  width: $height;
+  height: $width;
+  box-sizing: border-box;
+  transform: rotateY(180deg) rotateZ(90deg);
 
-a:link, a:visited {
-  font-weight: normal;
-  text-decoration: none;
-  color: #000000;
-  background: transparent;
-}
+  div.container-sm {
+    float: left;
+    width: 40%;
+    height: 100%;
+    position: relative;
+  }
 
-a:hover {
-  font-weight: bold;
-  text-decoration: none;
-  color: #666666;
-  background: transparent;
-}
+  div.container-lg {
+    float: left;
+    width: 60%;
+    margin-top: 2rem;
+  }
 
-a:active {
-  font-weight: left;
-  width: 240px;
-  background-color: #ffffff;
-  min-height: 600px;
-}
+  figure.logo-white {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: -60px -60px;
 
-#side-b {
-  margin: 0;
-  float: left;
-  width: 800px;
-  backgroun-color: #ffffff;
-  min-height: 600px;
-  height: 1%;
-}
+    &:before, &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent;
+    }
 
-#bro {
-  margin: 0;
-  padding: 0px 200px 0px 0px;
-  display: inline;
-}
+    &:before {
+      top: 0;
+      left: 0;
+      border-width: 60px;
+      border-top-color: white;
+      border-left-color: white;
+      z-index: 2;
+    }
 
-#footer {
-  text-align: right;
-  margin-right: 20px;
-  margin: 0;
-  width: 1040px;
-  clear: both;
-  color: #000000;
-}
+    &:after {
+      bottom: 0;
+      right: 0;
+      border-width: 56px;
+      border-right-color: white;
+    }
+  }
 
-#container {
-  background-color: #ffffff;
-  width: 1040px;
-  height: auto;
-}
+  a {
+    color: white;
+    text-decoration: none;
+    display: block;
 
-p {
-  margin: 0 0 10px 0;
-  line-height: 1.5;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 15px;
-}
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
-#detaillist ul {
-  display: inline;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  color: #d33737;
-  padding: 0px;
-  font-size: 12px;
-}
+  ul.social {
+    font-size: 1.25rem;
 
-#detaillist ul li {
-  display: inline;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  color: #d33737;
-  list-style: none:
-  padding: 0px;
-  font-size: 12px;
-}
+    li {
+      margin-top: 1rem;
 
-#detaillist {
-  display: inline;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  color: #d33737;
-  list-style: none;
-  padding: 0px;
-  font-size: 12px;
-}
-
-#thumb {
-  padding: 0px 10px 5px 0px;
-  display: inline;
+      &:first-child {
+        margin-top: 2rem;
+      }
+    }
+  }
 }
